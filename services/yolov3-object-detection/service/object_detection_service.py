@@ -53,7 +53,13 @@ class ObjectDetectorServicer(grpc_bt_grpc.DetectServicer):
 #
 # Add all your classes to the server here.
 def serve(max_workers=10, port=7777):
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=max_workers))
+    hundred_MB = (1024 ** 2) * 100   # max grpc message size
+
+    self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=20),
+        options=[
+        ('grpc.max_receive_message_length', hundred_MB)
+    ])
+    
     grpc_bt_grpc.add_DetectServicer_to_server(ObjectDetectorServicer(), server)
     server.add_insecure_port("[::]:{}".format(port))
     return server
