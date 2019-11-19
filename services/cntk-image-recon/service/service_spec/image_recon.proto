@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package image_recon;
+
 message Input {
     string model = 1;
     string img_path = 2;
