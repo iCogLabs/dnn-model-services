@@ -55,7 +55,7 @@ class ObjectDetectorServicer(grpc_bt_grpc.DetectServicer):
 def serve(max_workers=10, port=7777):
     hundred_MB = (1024 ** 2) * 100   # max grpc message size
 
-    self.server = grpc.server(futures.ThreadPoolExecutor(max_workers=20),
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=20),
         options=[
         ('grpc.max_receive_message_length', hundred_MB)
     ])
