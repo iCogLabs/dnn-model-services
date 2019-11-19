@@ -1,6 +1,6 @@
 FROM microsoft/cntk:latest
 
-ARG git_owner="singnet"
+ARG git_owner="iCogLabs"
 ARG git_repo="dnn-model-services"
 ARG git_branch="master"
 
