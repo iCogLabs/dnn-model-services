@@ -75,8 +75,10 @@ def serve(max_workers=10, port=7777):
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=20),
         options=[
+        ('grpc.max_send_message_length', hundred_MB),
         ('grpc.max_receive_message_length', hundred_MB)
     ])
+    
     grpc_bt_grpc.add_RecognizerServicer_to_server(RecognizerServicer(), server)
     server.add_insecure_port("[::]:{}".format(port))
     return server
