@@ -57,6 +57,7 @@ def serve(max_workers=10, port=7777):
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=20),
         options=[
+        ('grpc.max_send_message_length', hundred_MB),
         ('grpc.max_receive_message_length', hundred_MB)
     ])
     
